@@ -20,8 +20,13 @@ export class RecipeService{
             new Ingridents('Bread' , 20)
         ])
       ];
+ // private recipes:Recipe[]=[];
       constructor(private slService : ShoppingListService){}
       recipesChanged = new Subject<Recipe[]>();
+      setRecipes(recipe:Recipe[]){
+        this.recipes=recipe;
+        this.recipesChanged.next(this.recipes.slice())
+      }
       getRecipe(){
           return this.recipes.slice();
       }
